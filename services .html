@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги - Юридические услуги "Правовая защита"</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Логотип" width="50">
+                    <span>Правовая защита</span>
+                </a>
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li class="current"><a href="services.html">Услуги</a></li>
+                <li><a href="lawyers.html">Наши юристы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="dom-js.html">DOM_JS</a></li>
+                <li><a href="transliterate.html">Кириллица/Латиница</a></li>
+                <li><a href="algorithm.html">Алгоритмическая задача</a></li>
+                <li><a href="https://sudrf.ru" target="_blank">Суды РФ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Наши услуги</h1>
+        
+        <!-- Внутренняя навигация -->
+        <nav class="internal-nav">
+            <a href="#civil">Гражданское право</a>
+            <a href="#criminal">Уголовное право</a>
+            <a href="#corporate">Корпоративное право</a>
+            <a href="#top">К началу</a>
+        </nav>
+        
+        <div id="top">
+            <section id="civil">
+                <h2>Гражданское право</h2>
+                
+                <h3>Наши услуги в области гражданского права:</h3>
+                <ol>
+                    <li>Жилищные споры</li>
+                    <li>Наследственные дела</li>
+                    <li>Семейные споры</li>
+                    <li>Трудовые disputes</li>
+                </ol>
+                
+                <h3>Порядок работы:</h3>
+                <ul>
+                    <li>Консультация
+                        <ul>
+                            <li>Анализ документов</li>
+                            <li>Правовая оценка</li>
+                        </ul>
+                    </li>
+                    <li>Разработка стратегии
+                        <ol>
+                            <li>Досудебное урегулирование</li>
+                            <li>Подготовка искового заявления</li>
+                        </ol>
+                    </li>
+                </ul>
+                
+                <h3>Примеры наших работ:</h3>
+                <table class="image-table">
+                    <tr>
+                        <td>
+                            <a href="images/service1-large.jpg" target="_blank">
+                                <img src="images/service1.jpg" alt="Жилищный спор" width="100">
+                            </a>
+                            <p>Решение жилищного спора</p>
+                        </td>
+                        <td>
+                            <a href="images/service2-large.jpg" target="_blank">
+                                <img src="images/service2.jpg" alt="Наследственное дело" width="100">
+                            </a>
+                            <p>Наследственное дело</p>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section id="criminal">
+                <h2>Уголовное право</h2>
+                
+                <h3>Таблица с примерами дел:</h3>
+                <table class="cases-table">
+                    <tr>
+                        <td class="with-image">
+                            Защита по экономическим преступлениям
+                            <img src="images/lawyer1.jpg" alt="Адвокат по уголовным делам">
+                        </td>
+                        <td><a href="contacts.html">Записаться на консультацию</a></td>
+                    </tr>
+                    <tr>
+                        <td>Обжалование приговоров</td>
+                        <td>Условно-досрочное освобождение</td>
+                    </tr>
+                </table>
+            </section>
+            
+            <!-- Форма для заказа услуг -->
+            <section id="order-form">
+                <h2>Заказ юридических услуг</h2>
+                <form action="https://httpbin.org/post" method="POST">
+                    <input type="hidden" name="service_type" value="legal_service_order">
+                    
+                    <div class="form-group">
+                        <label for="service-category">Категория услуги:</label>
+                        <input type="text" id="service-category" name="service_category" value="Юридическая консультация">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="case-complexity">Сложность дела (1-10):</label>
+                        <input type="number" id="case-complexity" name="case_complexity" min="1" max="10" value="5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Тип клиента:</label>
+                        <div>
+                            <input type="radio" id="client-individual" name="client_type" value="individual" checked>
+                            <label for="client-individual">Физическое лицо</label>
+                            
+                            <input type="radio" id="client-legal" name="client_type" value="legal">
+                            <label for="client-legal">Юридическое лицо</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Дополнительные услуги:</label>
+                        <div>
+                            <input type="checkbox" id="service-docs" name="additional_services" value="document_preparation">
+                            <label for="service-docs">Подготовка документов</label>
+                            
+                            <input type="checkbox" id="service-court" name="additional_services" value="court_representation">
+                            <label for="service-court">Представительство в суде</label>
+                            
+                            <input type="checkbox" id="service-consult" name="additional_services" value="ongoing_consultation">
+                            <label for="service-consult">Постоянное сопровождение</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="case-date">Дата возникновения дела:</label>
+                        <input type="date" id="case-date" name="case_date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="client-password">Пароль для доступа к делу:</label>
+                        <input type="password" id="client-password" name="client_password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="case-description">Описание ситуации:</label>
+                        <textarea id="case-description" name="case_description" rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Отправить заявку</button>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

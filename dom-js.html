@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM_JS. Считываем информацию из DOM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Логотип" width="50">
+                    <span>Правовая защита</span>
+                </a>
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="lawyers.html">Наши юристы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li class="current"><a href="dom-js.html">DOM_JS</a></li>
+                <li><a href="transliterate.html">Кириллица/Латиница</a></li>
+                <li><a href="algorithm.html">Алгоритмическая задача</a></li>
+                <li><a href="https://sudrf.ru" target="_blank">Суды РФ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>DOM_JS. Считываем информацию из DOM</h1>
+        
+        <!-- Имитация паспортных данных клиента -->
+        <div id="client-passport">
+            <h2>Паспортные данные клиента</h2>
+            <p>Фамилия: <span id="passport-surname">Иванов</span></p>
+            <p>Имя: <span id="passport-name">Петр</span></p>
+            <p>Год рождения: <span id="passport-birth-year">1985</span></p>
+            <p>Место рождения: <span id="passport-birth-place">г. Москва</span></p>
+            <p>Дата выдачи: <span id="passport-issue-date">15.03.2015</span></p>
+            <p>Кем выдан: <span id="passport-authority">ОУФМС России по г. Москве</span></p>
+        </div>
+        
+        <button onclick="getPassportData()" class="btn">Получить данные из DOM</button>
+        
+        <div id="dom-result" class="result-container"></div>
+        
+        <div id="screenshot-example">
+            <h3>Инструкция по созданию скриншота:</h3>
+            <ol>
+                <li>Нажмите кнопку "Получить данные из DOM"</li>
+                <li>Откройте Инструменты разработчика (F12)</li>
+                <li>Перейдите в раздел Console</li>
+                <li>Введите: <code>document.getElementsByTagName('p')[2].childNodes[1].innerText</code></li>
+                <li>Сделайте скриншот и сохраните его</li>
+                <li>Добавьте скриншот на эту страницу</li>
+            </ol>
+            <!-- Здесь будет размещен ваш скриншот -->
+            <div class="screenshot-placeholder">
+                <p>Здесь будет размещен ваш скриншот с результатом выполнения команды в Console</p>
+            </div>
+        </div>
+        
+        <script>
+            function getPassportData() {
+                // Получаем данные из DOM различными способами
+                const surname = document.getElementById('passport-surname').innerText;
+                const name = document.getElementById('passport-name').innerText;
+                const birthYear = document.getElementById('passport-birth-year').innerText;
+                
+                // Альтернативный способ получения данных (как в задании)
+                const birthYearAlt = document.getElementsByTagName('p')[2].childNodes[1].innerText;
+                
+                // Выводим результат
+                const resultDiv = document.getElementById('dom-result');
+                resultDiv.innerHTML = `
+                    <h3>Полученные данные из DOM:</h3>
+                    <p><strong>Фамилия:</strong> ${surname}</p>
+                    <p><strong>Имя:</strong> ${name}</p>
+                    <p><strong>Год рождения:</strong> ${birthYear}</p>
+                    <p><strong>Альтернативный метод (год рождения):</strong> ${birthYearAlt}</p>
+                    <p><strong>Использованные методы:</strong></p>
+                    <ul>
+                        <li>document.getElementById('element-id').innerText</li>
+                        <li>document.getElementsByTagName('p')[2].childNodes[1].innerText</li>
+                    </ul>
+                `;
+                
+                // Также выводим в консоль для демонстрации
+                console.log("Данные из DOM:");
+                console.log("Фамилия:", surname);
+                console.log("Имя:", name);
+                console.log("Год рождения:", birthYear);
+                console.log("Альтернативный метод:", birthYearAlt);
+            }
+            
+            // Автоматически получаем данные при загрузке страницы
+            window.onload = getPassportData;
+        </script>
+    </main>
+</body>
+</html>
