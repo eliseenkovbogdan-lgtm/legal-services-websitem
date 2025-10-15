@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юридические услуги "Правовая защита"</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Логотип" width="50">
+                    <span>Правовая защита</span>
+                </a>
+            </div>
+            <ul>
+                <li class="current"><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="lawyers.html">Наши юристы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="dom-js.html">DOM_JS</a></li>
+                <li><a href="transliterate.html">Кириллица/Латиница</a></li>
+                <li><a href="algorithm.html">Алгоритмическая задача</a></li>
+                <li><a href="https://sudrf.ru" target="_blank">Суды РФ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Профессиональные юридические услуги</h1>
+            <p>Мы предоставляем полный спектр юридических услуг для физических и юридических лиц</p>
+            <a href="#contact-form" class="btn">Получить консультацию</a>
+        </section>
+
+        <section class="about">
+            <h2>О нашей компании</h2>
+            <p>Юридическая компания "Правовая защита" работает на рынке более 10 лет. Наши специалисты имеют богатый опыт в решении сложных правовых вопросов.</p>
+            
+            <h3>Наши преимущества:</h3>
+            <ul>
+                <li>Высокая квалификация юристов</li>
+                <li>Индивидуальный подход к каждому клиенту</li>
+                <li>Конфиденциальность</li>
+                <li>Доступные цены</li>
+            </ul>
+        </section>
+
+        <!-- Форма для контактных данных -->
+        <section id="contact-form">
+            <h2>Запись на консультацию</h2>
+            <form action="https://httpbin.org/post" method="POST">
+                <input type="hidden" name="form_type" value="legal_consultation">
+                
+                <div class="form-group">
+                    <label for="surname">Фамилия:</label>
+                    <input type="text" id="surname" name="surname" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="group">Группа (если студент):</label>
+                    <input type="text" id="group" name="group">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Мобильный телефон:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Электронная почта:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="consult-date">Дата консультации:</label>
+                    <input type="date" id="consult-date" name="consult_date" required>
+                </div>
+                
+                <button type="submit" class="btn">Записаться на консультацию</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Юридическая компания "Правовая защита". Все права защищены.</p>
+    </footer>
+</body>
+</html>
