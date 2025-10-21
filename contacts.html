@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Юридические услуги "Правовая защита"</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 4px solid #3498db;
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+        
+        .office-hours {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .hours-table td {
+            padding: 0.7rem;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        
+        .hours-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .map-container {
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .department-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-top: 3px solid #e74c3c;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+        }
+        
+        .emergency-contact {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .contact-form-container {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Логотип" width="50">
+                    <span>Правовая защита</span>
+                </a>
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="lawyers.html">Наши юристы</a></li>
+                <li class="current"><a href="contacts.html">Контакты</a></li>
+                <li><a href="dom-js.html">DOM_JS</a></li>
+                <li><a href="transliterate.html">Кириллица/Латиница</a></li>
+                <li><a href="algorithm.html">Алгоритмическая задача</a></li>
+                <li><a href="https://sudrf.ru" target="_blank">Суды РФ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Контакты</h1>
+        <p class="intro-text">Свяжитесь с нами любым удобным способом. Мы всегда готовы ответить на ваши вопросы и предоставить квалифицированную юридическую помощь.</p>
+
+        <!-- Внутренняя навигация -->
+        <nav class="internal-nav">
+            <a href="#main-office">Главный офис</a>
+            <a href="#departments">Отделы</a>
+            <a href="#schedule">График работы</a>
+            <a href="#emergency">Срочная помощь</a>
+            <a href="#feedback">Обратная связь</a>
+            <a href="#top">К началу</a>
+        </nav>
+
+        <div id="top">
+            <!-- Основная контактная информация -->
+            <section id="main-office">
+                <h2>Главный офис в Москве</h2>
+                <div class="contacts-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h3>Адрес</h3>
+                        <p>г. Москва, ул. Правовая, д. 15<br>
+                           Бизнес-центр "Юрист", 5 этаж<br>
+                           Станция метро "Юридическая"</p>
+                        <small>Вход со стороны ул. Закона</small>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h3>Телефоны</h3>
+                        <p><strong>Общий:</strong> +7 (495) 123-45-67</p>
+                        <p><strong>Приемная:</strong> +7 (495) 123-45-68</p>
+                        <p><strong>Факс:</strong> +7 (495) 123-45-69</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Электронная почта</h3>
+                        <p><strong>Общие вопросы:</strong><br>info@legal-protection.ru</p>
+                        <p><strong>Юридические консультации:</strong><br>consult@legal-protection.ru</p>
+                        <p><strong>Бухгалтерия:</strong><br>account@legal-protection.ru</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Карта -->
+            <section class="map-container">
+                <h3>Мы на карте</h3>
+                <div style="background: #ecf0f1; padding: 2rem; text-align: center; border-radius: 8px;">
+                    <div style="font-size: 3rem; color: #bdc3c7; margin-bottom: 1rem;">🗺️</div>
+                    <p><strong>Интерактивная карта</strong></p>
+                    <p>Здесь будет размещена карта с расположением нашего офиса</p>
+                    <small>Для навигации используйте: 55.7558° N, 37.6173° E</small>
+                </div>
+            </section>
+
+            <!-- График работы -->
+            <section id="schedule">
+                <h2>График работы</h2>
+                <div class="office-hours">
+                    <div class="contacts-grid">
+                        <div>
+                            <h3>Основной график</h3>
+                            <table class="hours-table">
+                                <tr>
+                                    <td>Понедельник - Пятница</td>
+                                    <td><strong>9:00 - 18:00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Суббота</td>
+                                    <td><strong>10:00 - 16:00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Воскресенье</td>
+                                    <td><strong>Выходной</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div>
+                            <h3>Прием клиентов</h3>
+                            <table class="hours-table">
+                                <tr>
+                                    <td>Консультации</td>
+                                    <td><strong>9:00 - 17:00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Оформление документов</td>
+                                    <td><strong>10:00 - 16:00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Срочные вопросы</td>
+                                    <td><strong>Круглосуточно</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Отделы компании -->
+            <section id="departments">
+                <h2>Отделы и специалисты</h2>
+                <div class="department-grid">
+                    <div class="department-card">
+                        <h4>📋 Гражданские дела</h4>
+                        <p><strong>Телефон:</strong> +7 (495) 123-50-01</p>
+                        <p><strong>Email:</strong> civil@legal-protection.ru</p>
+                        <p><strong>Руководитель:</strong> Петров А.С.</p>
+                    </div>
+
+                    <div class="department-card">
+                        <h4>⚖️ Уголовные дела</h4>
+                        <p><strong>Телефон:</strong> +7 (495) 123-50-02</p>
+                        <p><strong>Email:</strong> criminal@legal-protection.ru</p>
+                        <p><strong>Руководитель:</strong> Козлов Д.И.</p>
+                    </div>
+
+                    <div class="department-card">
+                        <h4>🏢 Корпоративное право</h4>
+                        <p><strong>Телефон:</strong> +7 (495) 123-50-03</p>
+                        <p><strong>Email:</strong> corporate@legal-protection.ru</p>
+                        <p><strong>Руководитель:</strong> Волков А.Н.</p>
+                    </div>
+
+                    <div class="department-card">
+                        <h4>👨‍👩‍👧‍👦 Семейные споры</h4>
+                        <p><strong>Телефон:</strong> +7 (495) 123-50-04</p>
+                        <p><strong>Email:</strong> family@legal-protection.ru</p>
+                        <p><strong>Руководитель:</strong> Орлова М.В.</p>
+                    </div>
+
+                    <div class="department-card">
+                        <h4>🏠 Недвижимость</h4>
+                        <p><strong>Телефон:</strong> +7 (495) 123-50-05</p>
+                        <p><strong>Email:</strong> property@legal-protection.ru</p>
+                        <p><strong>Руководитель:</strong> Федоров С.М.</p>
+                    </div>
+
+                    <div class="department-card">
+                        <h4>💼 Трудовые споры</h4>
+                        <p><strong>Телефон:</strong> +7 (495) 123-50-06</p>
+                        <p><strong>Email:</strong> labor@legal-protection.ru</p>
+                        <p><strong>Руководитель:</strong> Смирнова О.В.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Срочная помощь -->
+            <section id="emergency">
+                <div class="emergency-contact">
+                    <h2>⚡ Срочная юридическая помощь</h2>
+                    <p>Если вам требуется срочная юридическая консультация в нерабочее время:</p>
+                    <div style="font-size: 2rem; font-weight: bold; margin: 1rem 0;">
+                        +7 (495) 123-99-99
+                    </div>
+                    <p>Круглосуточная горячая линия</p>
+                    <small>Доступно: экстренные задержания, обыски, аресты</small>
+                </div>
+            </section>
+
+            <!-- Социальные сети -->
+            <section>
+                <h2>Мы в социальных сетях</h2>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="VKontakte">VK</a>
+                    <a href="#" class="social-link" title="Telegram">TG</a>
+                    <a href="#" class="social-link" title="WhatsApp">WA</a>
+                    <a href="#" class="social-link" title="YouTube">YT</a>
+                    <a href="#" class="social-link" title="Email">@</a>
+                </div>
+                <p style="text-align: center; color: #666;">
+                    Следите за нашими новостями и получайте полезные юридические советы
+                </p>
+            </section>
+
+            <!-- Форма обратной связи -->
+            <section id="feedback" class="contact-form-container">
+                <h2>Форма обратной связи</h2>
+                <form action="https://httpbin.org/post" method="POST">
+                    <input type="hidden" name="form_type" value="contact_feedback">
+                    
+                    <div class="form-group">
+                        <label for="feedback-name">Ваше имя:</label>
+                        <input type="text" id="feedback-name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-phone">Телефон:</label>
+                        <input type="tel" id="feedback-phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-email">Email:</label>
+                        <input type="email" id="feedback-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-department">Отдел для связи:</label>
+                        <select id="feedback-department" name="department" required>
+                            <option value="">Выберите отдел</option>
+                            <option value="civil">Гражданские дела</option>
+                            <option value="criminal">Уголовные дела</option>
+                            <option value="corporate">Корпоративное право</option>
+                            <option value="family">Семейные споры</option>
+                            <option value="property">Недвижимость</option>
+                            <option value="labor">Трудовые споры</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-type">Тип обращения:</label>
+                        <div>
+                            <input type="radio" id="type-consult" name="request_type" value="consultation" checked>
+                            <label for="type-consult">Консультация</label>
+                            
+                            <input type="radio" id="type-docs" name="request_type" value="documents">
+                            <label for="type-docs">Оформление документов</label>
+                            
+                            <input type="radio" id="type-other" name="request_type" value="other">
+                            <label for="type-other">Другое</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-urgency">Срочность:</label>
+                        <select id="feedback-urgency" name="urgency">
+                            <option value="normal">Обычная</option>
+                            <option value="high">Срочная</option>
+                            <option value="emergency">Экстренная</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-message">Сообщение:</label>
+                        <textarea id="feedback-message" name="message" rows="5" placeholder="Опишите ваш вопрос или ситуацию..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="newsletter" checked>
+                            Подписаться на новостную рассылку
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="agree_terms" required>
+                            Я согласен на обработку персональных данных
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn">Отправить сообщение</button>
+                </form>
+            </section>
+
+            <!-- Дополнительная информация -->
+            <section>
+                <h2>Дополнительная информация</h2>
+                <div class="contacts-grid">
+                    <div class="contact-card">
+                        <h3>🏦 Реквизиты компании</h3>
+                        <p><strong>ООО "Правовая защита"</strong><br>
+                        ИНН: 7701234567<br>
+                        КПП: 770101001<br>
+                        ОГРН: 1187746123456</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>🚗 Как добраться</h3>
+                        <p><strong>На метро:</strong> ст. "Юридическая"<br>
+                        <strong>На автомобиле:</strong> парковка у бизнес-центра<br>
+                        <strong>Для маломобильных:</strong> пандус, лифт</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>📄 Документы</h3>
+                        <p>Лицензия № ЛО-77-012345<br>
+                        Свидетельство о регистрации<br>
+                        Страхование ответственности</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Юридическая компания "Правовая защита". Все права защищены.</p>
+        <p>Телефон: +7 (495) 123-45-67 | Email: info@legal-protection.ru</p>
+    </footer>
+
+    <script>
+        // Плавная прокрутка для внутренних ссылок
+        document.querySelectorAll('.internal-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Автозаполнение даты в форме
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                if (!input.value) {
+                    input.value = today;
+                }
+            });
+        });
+
+        // Подсветка активного раздела при прокрутке
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.internal-nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
