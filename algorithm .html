@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Решение алгоритмической задачи</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Логотип" width="50">
+                    <span>Правовая защита</span>
+                </a>
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="lawyers.html">Наши юристы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="dom-js.html">DOM_JS</a></li>
+                <li><a href="transliterate.html">Кириллица/Латиница</a></li>
+                <li class="current"><a href="algorithm.html">Алгоритмическая задача</a></li>
+                <li><a href="https://sudrf.ru" target="_blank">Суды РФ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Решение алгоритмической задачи</h1>
+        
+        <section id="problem-statement">
+            <h2>Условие задачи</h2>
+            <p><strong>Задача:</strong> Определить, можно ли из заданных длин сторон a, b, c построить треугольник, и если да, то определить его тип (остроугольный, прямоугольный, тупоугольный).</p>
+            
+            <h3>Математическая модель:</h3>
+            <p>Треугольник существует, если сумма любых двух сторон больше третьей:</p>
+            <ul>
+                <li>a + b > c</li>
+                <li>a + c > b</li>
+                <li>b + c > a</li>
+            </ul>
+            
+            <p>Тип треугольника определяется по теореме косинусов:</p>
+            <ul>
+                <li>Прямоугольный: a² + b² = c² (или другие комбинации)</li>
+                <li>Остроугольный: a² + b² > c² (для всех сторон)</li>
+                <li>Тупоугольный: a² + b² < c² (для одной из сторон)</li>
+            </ul>
+        </section>
+        
+        <section id="solution">
+            <h2>Решение</h2>
+            <div class="form-group">
+                <label for="side-a">Сторона a:</label>
+                <input type="number" id="side-a" step="0.1" min="0.1" value="3">
+            </div>
+            
+            <div class="form-group">
+                <label for="side-b">Сторона b:</label>
+                <input type="number" id="side-b" step="0.1" min="0.1" value="4">
+            </div>
+            
+            <div class="form-group">
+                <label for="side-c">Сторона c:</label>
+                <input type="number" id="side-c" step="0.1" min="0.1" value="5">
+            </div>
+            
+            <button onclick="solveTriangleProblem()" class="btn">Определить тип треугольника</button>
+            
+            <div id="solution-result" class="result-container"></div>
+        </section>
+        
+        <script>
+            function solveTriangleProblem() {
+                const a = parseFloat(document.getElementById('side-a').value);
+                const b = parseFloat(document.getElementById('side-b').value);
+                const c = parseFloat(document.getElementById('side-c').value);
+                
+                const resultDiv = document.getElementById('solution-result');
+                
+                if (!isValidTriangle(a, b, c)) {
+                    resultDiv.innerHTML = `
+                        <h3>Результат:</h3>
+                        <p style="color: red;">Треугольник с такими сторонами не существует!</p>
+                        <p>Проверка условий:</p>
+                        <ul>
+                            <li>a + b > c: ${a} + ${b} > ${c} = ${a + b > c}</li>
+                            <li>a + c > b: ${a} + ${c} > ${b} = ${a + c > b}</li>
+                            <li>b + c > a: ${b} + ${c} > ${a} = ${b + c > a}</li>
+                        </ul>
+                    `;
+                    return;
+                }
+                
+                const triangleType = determineTriangleType(a, b, c);
+                
+                resultDiv.innerHTML = `
+                    <h3>Результат:</h3>
+                    <p style="color: green;">Треугольник существует!</p>
+                    <p><strong>Тип треугольника:</strong> ${triangleType}</p>
+                    <p><strong>Проверка по теореме косинусов:</strong></p>
+                    <ul>
+                        <li>a² + b² = ${a*a + b*b}, c² = ${c*c}</li>
+                        <li>a² + c² = ${a*a + c*c}, b² = ${b*b}</li>
+                        <li>b² + c² = ${b*b + c*c}, a² = ${a*a}</li>
+                    </ul>
+                `;
+            }
+            
+            function isValidTriangle(a, b, c) {
+                return a + b > c && a + c > b && b + c > a;
+            }
+            
+            function determineTriangleType(a, b, c) {
+                const sides = [a, b, c].sort((x, y) => x - y);
+                const [x, y, z] = sides;
+                
+                const x2 = x * x;
+                const y2 = y * y;
+                const z2 = z * z;
+                
+                if (Math.abs(x2 + y2 - z2) < 0.0001) {
+                    return "Прямоугольный";
+                } else if (x2 + y2 > z2) {
+                    return "Остроугольный";
+                } else {
+                    return "Тупоугольный";
+                }
+            }
+        </script>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Юридическая компания "Правовая защита". Все права защищены.</p>
+    </footer>
+</body>
+</html>
