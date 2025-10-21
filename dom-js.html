@@ -1,103 +1,92 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM_JS. Считываем информацию из DOM</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/part_1_8_style.css">
+    <title>Passport — Sentinel</title>
+    <link rel="icon" type="image/png" href="img/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="img/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="img/favicons/site.webmanifest" />
 </head>
 <body>
-    <nav id="main-nav">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="Логотип" width="50">
-                    <span>Правовая защита</span>
-                </a>
-            </div>
-            <ul>
+
+    <div class="all-nav">
+        <h2 id="outer-nav">SENTINEL</h2>
+        <div class="black-nav">
+            <ul class="nav">
                 <li><a href="index.html">Главная</a></li>
-                <li><a href="services.html">Услуги</a></li>
-                <li><a href="lawyers.html">Наши юристы</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-                <li class="current"><a href="dom-js.html">DOM_JS</a></li>
-                <li><a href="transliterate.html">Кириллица/Латиница</a></li>
-                <li><a href="algorithm.html">Алгоритмическая задача</a></li>
-                <li><a href="https://sudrf.ru" target="_blank">Суды РФ</a></li>
+                <li><a href="lists.html">Узнать больше</a></li>
+                <li><a href="representatives.html">Представители Sentinel</a></li>
+                <li><a href="building-and-map.html"><img src="img/company-office.png" alt="company-office" width="20" title="Посмотреть офис компании"></a></li>
+                <li><a href="table.html">Краткий обзор Sentinel</a></li>
+                <li><a href="passport.html" class="main-link">Паспорт компании</a></li>
+                <li><a href="algs.html">Алгоритм безопасности</a></li>
             </ul>
         </div>
-    </nav>
 
-    <main>
-        <h1>DOM_JS. Считываем информацию из DOM</h1>
-        
-        <!-- Имитация паспортных данных клиента -->
-        <div id="client-passport">
-            <h2>Паспортные данные клиента</h2>
-            <p>Фамилия: <span id="passport-surname">Иванов</span></p>
-            <p>Имя: <span id="passport-name">Петр</span></p>
-            <p>Год рождения: <span id="passport-birth-year">1985</span></p>
-            <p>Место рождения: <span id="passport-birth-place">г. Москва</span></p>
-            <p>Дата выдачи: <span id="passport-issue-date">15.03.2015</span></p>
-            <p>Кем выдан: <span id="passport-authority">ОУФМС России по г. Москве</span></p>
+        <div class="black-nav">
+            <ul class="nav">
+                <li class="more-mg"><a href="#notes" class="anchor-inactive">Перейти к рекомендациям</a></li>
+                <li><a href="#about-us" class="anchor-inactive">О Sentinel</a></li>
+                <li><a href="https://t.me/ob1101" target="_blank">Сотрудничество</a></li> 
+                <li><a href="resume.html">Подать резюме</a></li>
+                <li><a href="request.html">Комплексная защита</a></li>
+                <li><a href="https://docs.google.com/document/d/1ztQ5R3w9ewzbD-YblNddGogWkwsDoaPU1uzVj_aNad0/edit?usp=sharing" target="_blank" title="Посмотреть условия лицензии"><img src="img/лого.png" alt="logo" width="20"></a></li> 
+            </ul>
         </div>
-        
-        <button onclick="getPassportData()" class="btn">Получить данные из DOM</button>
-        
-        <div id="dom-result" class="result-container"></div>
-        
-        <div id="screenshot-example">
-            <h3>Инструкция по созданию скриншота:</h3>
-            <ol>
-                <li>Нажмите кнопку "Получить данные из DOM"</li>
-                <li>Откройте Инструменты разработчика (F12)</li>
-                <li>Перейдите в раздел Console</li>
-                <li>Введите: <code>document.getElementsByTagName('p')[2].childNodes[1].innerText</code></li>
-                <li>Сделайте скриншот и сохраните его</li>
-                <li>Добавьте скриншот на эту страницу</li>
-            </ol>
-            <!-- Здесь будет размещен ваш скриншот -->
-            <div class="screenshot-placeholder">
-                <p>Здесь будет размещен ваш скриншот с результатом выполнения команды в Console</p>
-            </div>
-        </div>
-        
-        <script>
-            function getPassportData() {
-                // Получаем данные из DOM различными способами
-                const surname = document.getElementById('passport-surname').innerText;
-                const name = document.getElementById('passport-name').innerText;
-                const birthYear = document.getElementById('passport-birth-year').innerText;
-                
-                // Альтернативный способ получения данных (как в задании)
-                const birthYearAlt = document.getElementsByTagName('p')[2].childNodes[1].innerText;
-                
-                // Выводим результат
-                const resultDiv = document.getElementById('dom-result');
-                resultDiv.innerHTML = `
-                    <h3>Полученные данные из DOM:</h3>
-                    <p><strong>Фамилия:</strong> ${surname}</p>
-                    <p><strong>Имя:</strong> ${name}</p>
-                    <p><strong>Год рождения:</strong> ${birthYear}</p>
-                    <p><strong>Альтернативный метод (год рождения):</strong> ${birthYearAlt}</p>
-                    <p><strong>Использованные методы:</strong></p>
-                    <ul>
-                        <li>document.getElementById('element-id').innerText</li>
-                        <li>document.getElementsByTagName('p')[2].childNodes[1].innerText</li>
-                    </ul>
-                `;
-                
-                // Также выводим в консоль для демонстрации
-                console.log("Данные из DOM:");
-                console.log("Фамилия:", surname);
-                console.log("Имя:", name);
-                console.log("Год рождения:", birthYear);
-                console.log("Альтернативный метод:", birthYearAlt);
-            }
+    </div>
+
+    <div class="first-part">
+        <h3>ИЗМЕНЯЕМ КИРИЛЛИЦУ НА ЛАТИНИЦУ ПО КЛИКУ</h3>
+
+        <div class="passport" id="passport">
+
+            <p class="issuing-passport passport-text" id="issuing-passport">УМВД РОССИИ ПО КАЛУЖСКОЙ ОБЛАСТИ</p>
             
-            // Автоматически получаем данные при загрузке страницы
-            window.onload = getPassportData;
-        </script>
-    </main>
+            <p class="issuing-date passport-text">13.11.2021</p>
+
+            <p class="unit-code passport-text">131-101</p>
+
+            <img src="img/подпись-1.png" alt="signature" class="signature">
+
+            <img src="img/подпись-2.png" alt="my-signature" class="my-signature">
+
+            <p class="surname passport-text" id="surname">ФЕДОСОВА</p>
+
+            <p class="name passport-text" id="name">ОЛЕСЯ</p>
+
+            <p class="patronymic passport-text" id="patronymic">СТАНИСЛАВОВНА</p>
+
+            <p class="gender passport-text" id="gender">ЖЕН.</p>
+
+            <p class="birthday passport-text">26.04.2007</p>
+
+            <p class="city passport-text" id="city">Г. ОДИНЦОВО</p>
+
+            <p class="area passport-text" id="area">МОСКОВСКАЯ ОБЛАСТЬ</p>
+
+            <img src="img/фото-на-паспорт.jpg" alt="passport-photo" class="passport-photo">
+
+        </div>
+
+        <button id="change" class="change">Click to show English version</button>
+    </div>
+    
+    <div class="second-part">
+        <h3>DOM_JS. СЧИТЫВАЕМ ИНФОРМАЦИЮ ИЗ DOM</h3>
+
+        <img src="img/dom-js.png" alt="dom-js" id="image">
+
+        <button class="change increase" id="increase">Нажмите,<br>чтобы увеличить</button>
+    </div>
+
+    <script src="js/part_1_8.js"></script>
+
 </body>
 </html>
