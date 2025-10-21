@@ -347,3 +347,135 @@ table img {
 table img:hover {
     transform: scale(1.05);
 }
+
+/* Стили для страницы "Наши юристы" */
+.lawyers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.lawyer-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e1e8ed;
+}
+
+.lawyer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.lawyer-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    display: block;
+    border: 4px solid #3498db;
+}
+
+.lawyer-name {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.lawyer-specialization {
+    color: #e74c3c;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.lawyer-experience {
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.lawyer-skills {
+    list-style-type: none;
+    margin: 1rem 0;
+}
+
+.lawyer-skills li {
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed #ecf0f1;
+}
+
+.lawyer-skills li:before {
+    content: "✓ ";
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.specialization-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 0.7rem 1.5rem;
+    border: 2px solid #3498db;
+    background: white;
+    color: #3498db;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #3498db;
+    color: white;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 3rem 0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.consultation-form {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 3rem;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #555;
+}
