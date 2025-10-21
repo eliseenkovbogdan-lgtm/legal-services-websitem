@@ -245,16 +245,6 @@
                     <li>К какому веку этот год относится</li>
                 </ol>
                 
-                <div class="formula">
-                    Алгоритм определения високосного года:<br>
-                    (год делится на 4 И не делится на 100) ИЛИ (год делится на 400)
-                </div>
-                
-                <div class="formula">
-                    Алгоритм определения века:<br>
-                    век = Math.floor((год - 1) / 100) + 1
-                </div>
-            </div>
 
             <!-- Форма ввода -->
             <div class="input-section">
@@ -296,44 +286,7 @@
                 <div id="explanation" style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 5px;"></div>
             </div>
 
-            <!-- Примеры -->
-            <div class="examples-section">
-                <h3>📚 Примеры для проверки:</h3>
-                <div class="examples-grid">
-                    <div class="example-card" onclick="setExample(2000)">
-                        <strong>2000 год</strong><br>
-                        Високосный<br>
-                        20-21 век
-                    </div>
-                    <div class="example-card" onclick="setExample(1900)">
-                        <strong>1900 год</strong><br>
-                        Не високосный<br>
-                        19-20 век
-                    </div>
-                    <div class="example-card" onclick="setExample(2024)">
-                        <strong>2024 год</strong><br>
-                        Високосный<br>
-                        21 век
-                    </div>
-                    <div class="example-card" onclick="setExample(2023)">
-                        <strong>2023 год</strong><br>
-                        Не високосный<br>
-                        21 век
-                    </div>
-                    <div class="example-card" onclick="setExample(1600)">
-                        <strong>1600 год</strong><br>
-                        Високосный<br>
-                        16-17 век
-                    </div>
-                    <div class="example-card" onclick="setExample(1700)">
-                        <strong>1700 год</strong><br>
-                        Не високосный<br>
-                        17-18 век
-                    </div>
-                </div>
-            </div>
-        </div>
-
+          
         <!-- Алгоритм решения -->
         <div class="algorithm-steps">
             <h3>🔍 Алгоритм решения:</h3>
@@ -345,39 +298,6 @@
             <div class="step" style="margin-left: 2rem;">- Не делится на 100 (кроме случаев деления на 400)</div>
             <div class="step">Вывести результаты с пояснениями</div>
         </div>
-
-        <!-- Код решения -->
-        <div class="code-example">
-            <h4>📝 JavaScript код решения:</h4>
-            <pre><code>function isLeapYear(year) {
-    // Год високосный, если:
-    // 1. Делится на 4 И не делится на 100
-    // 2. ИЛИ делится на 400
-    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
-}
-
-function getCentury(year) {
-    // Век = целая часть от (год - 1) / 100 + 1
-    return Math.floor((year - 1) / 100) + 1;
-}
-
-function calculateYearInfo() {
-    const year = parseInt(document.getElementById('year-input').value);
-    
-    if (isNaN(year) || year < 1 || year > 9999) {
-        alert('Пожалуйста, введите корректный год (от 1 до 9999)');
-        return;
-    }
-    
-    const isLeap = isLeapYear(year);
-    const century = getCentury(year);
-    const daysInYear = isLeap ? 366 : 365;
-    
-    // Обновляем интерфейс с результатами
-    updateResults(year, century, isLeap, daysInYear);
-}</code></pre>
-        </div>
-
 
     <footer>
         <p>&copy; 2025 Юридическая компания "Правовая защита". Все права защищены.</p>
