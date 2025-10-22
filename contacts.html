@@ -433,5 +433,20 @@
             });
         });
     </script>
+                    <script>
+    // Обработка отправки формы
+    const contactForm = document.querySelector('#feedback form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            // Позволяем форме отправиться стандартным способом
+            // Но добавляем обработку после отправки
+            
+            // Создаем обработчик для события отправки формы
+            setTimeout(function() {
+                window.location.href = 'https://yandex.ru';
+            }, 2000); // Задержка 2 секунды для имитации отправки на сервер
+        });
+    }
+</script>
 </body>
 </html>
