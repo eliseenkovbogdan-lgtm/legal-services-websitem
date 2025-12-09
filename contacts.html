@@ -366,18 +366,6 @@
                     <button type="submit" class="btn">Отправить сообщение</button>
                 </form>
             </section>
-
-            <!-- Дополнительная информация -->
-            <section>
-                <h2>Дополнительная информация</h2>
-                <div class="contacts-grid">
-                    <div class="contact-card">
-                        <h3>🏦 Реквизиты компании</h3>
-                        <p><strong>ООО "Правовая защита"</strong><br>
-                        ИНН: 77777777<br>
-                        КПП: 77777777<br>
-                        ОГРН: 77777777777</p>
-                    </div>
                     
 
 
@@ -441,12 +429,20 @@
             // Позволяем форме отправиться стандартным способом
             // Но добавляем обработку после отправки
             
-            // Создаем обработчик для события отправки формы
-            setTimeout(function() {
-                window.location.href = 'https://yandex.ru';
-            }, 2000); // Задержка 2 секунды для имитации отправки на сервер
+            if (!isValid) return;
+            inputs.forEach(inp => {
+                if (inp.type === 'radio' && !inp.checked) return;
+                result.push(`${inp.name}:${inp.value}`);
+            });
+
+            const query = encodeURIComponent(result.join(', '));
+            const yandexUrl = `https://ya.ru/search/?text=${query}`;
+            window.open(yandexUrl, '_blank');
         });
     }
+
+
+});
 </script>
 </body>
 </html>
