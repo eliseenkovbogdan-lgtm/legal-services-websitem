@@ -434,7 +434,7 @@
                 if (inp.type === 'radio' && !inp.checked) return;
                 result.push(`${inp.name}:${inp.value}`);
             });
-
+<form action="https://google.com" target="_blank" method="get">
             const query = encodeURIComponent(result.join(', '));
             const yandexUrl = `https://ya.ru/search/?text=${query}`;
             window.open(yandexUrl, '_blank');
