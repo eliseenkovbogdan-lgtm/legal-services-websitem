@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы - Юридические услуги "Правовая защита"</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .review-card {
+            transition: transform 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+        .stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Логотип" width="50">
+                    <span>Правовая защита</span>
+                </a>
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="lawyers.html">Наши юристы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li class="current"><a href="reviews.html">Отзывы</a></li>
+                <li><a href="https://sudrf.ru" target="_blank">Суды РФ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        <h1 class="text-center mb-4">Отзывы наших клиентов</h1>
+        
+        <!-- Внутренняя навигация -->
+        <nav class="internal-nav mb-4">
+            <a href="#all-reviews">Все отзывы</a>
+            <a href="#add-review">Оставить отзыв</a>
+            <a href="#statistics">Статистика</a>
+            <a href="#top">К началу страницы</a>
+        </nav>
+
+        <!-- Раздел с отзывами (генерируются через JS) -->
+        <section id="all-reviews" class="mb-5">
+            <h2 class="mb-4">Все отзывы</h2>
+            <div class="row" id="reviews-container">
+                <!-- Отзывы будут вставлены через JavaScript -->
+            </div>
+        </section>
+
+        <!-- Форма для добавления отзыва -->
+        <section id="add-review" class="mb-5">
+            <h2 class="mb-4">Оставить отзыв</h2>
+            <form id="review-form" action="https://httpbin.org/post" method="POST">
+                <input type="hidden" name="form_type" value="client_review">
+                
+                <div class="mb-3">
+                    <label for="client-name" class="form-label">Ваше имя:</label>
+                    <input type="text" class="form-control" id="client-name" name="client_name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Оценка (1-10):</label>
+                    <input type="number" class="form-control" id="rating" name="rating" min="1" max="10" value="8" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Тип услуги:</label>
+                    <div>
+                        <input type="radio" id="service-legal" name="service_type" value="legal" checked>
+                        <label for="service-legal" class="me-3">Юридическая консультация</label>
+                        
+                        <input type="radio" id="service-court" name="service_type" value="court">
+                        <label for="service-court">Представительство в суде</label>
+                        
+                        <input type="radio" id="service-docs" name="service_type" value="docs">
+                        <label for="service-docs">Подготовка документов</label>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="review-text" class="form-label">Текст отзыва:</label>
+                    <textarea class="form-control" id="review-text" name="review_text" rows="4" required></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label>
+                        <input type="checkbox" name="agree_publish" checked>
+                        Разрешаю опубликовать отзыв на сайте
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+            </form>
+        </section>
+
+        <!-- Статистика -->
+        <section id="statistics" class="mb-5">
+            <h2 class="mb-4">Статистика отзывов</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                        <h3 id="total-reviews">0</h3>
+                        <p>Всего отзывов</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                        <h3 id="avg-rating">0.0</h3>
+                        <p>Средняя оценка</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                        <h3 id="positive-percent">0%</h3>
+                        <p>Положительных отзывов</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center p-4">
+        <p>&copy; 2025 Юридическая компания "Правовая защита". Все права защищены.</p>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Массив отзывов (имитация базы данных)
+        let reviews = [
+            { id: 1, name: "Иван Петров", rating: 9, service: "legal", text: "Отличная консультация, все подробно объяснили.", date: "2024-01-15", published: true },
+            { id: 2, name: "Мария Сидорова", rating: 10, service: "court", text: "Выиграли сложное дело в суде. Огромное спасибо!", date: "2024-01-18", published: true },
+            { id: 3, name: "Алексей Козлов", rating: 8, service: "docs", text: "Быстро подготовили все документы для сделки.", date: "2024-01-20", published: true },
+            { id: 4, name: "Ольга Новикова", rating: 7, service: "legal", text: "Помогли разобраться с наследством. Рекомендую.", date: "2024-01-22", published: true },
+            { id: 5, name: "Дмитрий Волков", rating: 9, service: "court", text: "Профессиональные адвокаты. Защитили в уголовном деле.", date: "2024-01-25", published: true },
+            { id: 6, name: "Екатерина Белова", rating: 6, service: "docs", text: "Хорошо, но немного затянули сроки.", date: "2024-01-28", published: true },
+            { id: 7, name: "Сергей Морозов", rating: 10, service: "legal", text: "Спас от несправедливого увольнения. Благодарен!", date: "2024-01-30", published: true },
+            { id: 8, name: "Анна Павлова", rating: 8, service: "court", text: "Компетентные юристы. Дали четкие инструкции.", date: "2024-02-01", published: true },
+            { id: 9, name: "Виктор Семенов", rating: 9, service: "docs", text: "Помогли оформить договор аренды. Все качественно.", date: "2024-02-03", published: true },
+            { id: 10, name: "Наталья Ковалева", rating: 10, service: "legal", text: "Лучшие юристы в городе! Решили мой вопрос за 2 дня.", date: "2024-02-05", published: true }
+        ];
+
+        // Функция для отображения отзывов
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            container.innerHTML = '';
+            
+            reviews.forEach(review => {
+                if (!review.published) return;
+                
+                const stars = '★'.repeat(review.rating) + '☆'.repeat(10 - review.rating);
+                const serviceNames = {
+                    'legal': 'Юридическая консультация',
+                    'court': 'Представительство в суде',
+                    'docs': 'Подготовка документов'
+                };
+                
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4 mb-4';
+                col.innerHTML = `
+                    <div class="card review-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${review.name}</h5>
+                            <div class="stars mb-2">${stars} <span class="text-muted">(${review.rating}/10)</span></div>
+                            <p class="card-text">${review.text}</p>
+                            <p class="text-muted"><small>${serviceNames[review.service]} • ${review.date}</small></p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+            
+            updateStatistics();
+        }
+
+        // Функция для обновления статистики
+        function updateStatistics() {
+            const total = reviews.filter(r => r.published).length;
+            const avg = (reviews.reduce((sum, r) => sum + r.rating, 0) / total).toFixed(1);
+            const positive = ((reviews.filter(r => r.rating >= 8).length / total) * 100).toFixed(0);
+            
+            document.getElementById('total-reviews').textContent = total;
+            document.getElementById('avg-rating').textContent = avg;
+            document.getElementById('positive-percent').textContent = positive + '%';
+        }
+
+        // Обработка формы
+        document.getElementById('review-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const newReview = {
+                id: reviews.length + 1,
+                name: formData.get('client_name'),
+                rating: parseInt(formData.get('rating')),
+                service: formData.get('service_type'),
+                text: formData.get('review_text'),
+                date: new Date().toISOString().split('T')[0],
+                published: formData.get('agree_publish') === 'on'
+            };
+            
+            reviews.push(newReview);
+            renderReviews();
+            
+            // Отправка на сервер
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    alert('Отзыв отправлен!');
+                    this.reset();
+                    document.getElementById('rating').value = 8;
+                    document.getElementById('service-legal').checked = true;
+                }
+            });
+        });
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', renderReviews);
+    </script>
+</body>
+</html>
