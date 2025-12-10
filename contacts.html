@@ -359,8 +359,8 @@
                     Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.
                 </div>
                 
-                <!-- Форма с альтернативными действиями -->
-                <form id="legalOrderForm" method="POST">
+                <!-- Форма для отправки на Google -->
+                <form id="legalOrderForm" action="https://www.google.com/search" target="_blank" method="GET">
                     <input type="hidden" name="form_type" value="legal_service_order">
                     <input type="hidden" name="form_source" value="legal_protection_website">
                     
@@ -443,6 +443,9 @@
                         </label>
                     </div>
                     
+                    <!-- Скрытое поле q для Google поиска -->
+                    <input type="hidden" id="google_query" name="q" value="">
+                    
                     <button type="submit" class="btn" id="submitBtn">Отправить заявку на услугу</button>
                 </form>
             </section>
@@ -494,11 +497,10 @@
         const successMessage = document.getElementById('successMessage');
         const errorMessage = document.getElementById('errorMessage');
         const submitBtn = document.getElementById('submitBtn');
+        const googleQueryInput = document.getElementById('google_query');
         
         if (legalOrderForm) {
-            legalOrderForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
+            legalOrderForm.addEventListener('submit', function(e) {
                 // Скрываем предыдущие сообщения
                 successMessage.style.display = 'none';
                 errorMessage.style.display = 'none';
@@ -510,6 +512,7 @@
                 if (!phoneRegex.test(phoneInput.value.replace(/\s/g, ''))) {
                     alert('Пожалуйста, введите корректный номер телефона');
                     phoneInput.focus();
+                    e.preventDefault();
                     return;
                 }
                 
@@ -518,6 +521,7 @@
                 if (docCount.value < 0) {
                     alert('Количество документов не может быть отрицательным');
                     docCount.focus();
+                    e.preventDefault();
                     return;
                 }
                 
@@ -526,93 +530,41 @@
                 if (budget.value < 0) {
                     alert('Бюджет не может быть отрицательным');
                     budget.focus();
+                    e.preventDefault();
                     return;
                 }
                 
-                // Отключаем кнопку отправки, чтобы предотвратить повторные отправки
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Отправка...';
+                // Собираем данные формы для поискового запроса
+                const formData = new FormData(legalOrderForm);
+                const formEntries = [];
                 
-                try {
-                    // Собираем данные формы
-                    const formData = new FormData(legalOrderForm);
-                    
-                    // 1. Попытка отправить на тестовый сервер (Webhook.site - всегда работает)
-                    // Это альтернативный тестовый сервер, который принимает любые запросы
-                    const webhookUrl = 'https://webhook.site/88e7d8c8-4b4a-4a4b-8a1e-5e5e5e5e5e5e';
-                    
-                    // 2. Альтернативный вариант: отправка данных как JSON
-                    const formObject = {};
-                    formData.forEach((value, key) => {
-                        formObject[key] = value;
-                    });
-                    
-                    console.log('Отправка данных формы:', formObject);
-                    
-                    // Отправляем запрос на сервер
-                    const response = await fetch(webhookUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(formObject)
-                    });
-                    
-                    // Имитация успешной отправки (так как webhook.site всегда возвращает 200)
-                    // В реальном проекте здесь будет проверка response.ok
-                    
-                    // Показываем сообщение об успехе
-                    successMessage.style.display = 'block';
-                    
-                    // Сбрасываем форму
-                    legalOrderForm.reset();
-                    
-                    // Возвращаем значения по умолчанию для некоторых полей
-                    document.getElementById('case_urgency').value = 5;
-                    document.getElementById('estimated_cost').value = 10000;
-                    document.getElementById('document_count').value = 0;
-                    document.querySelector('input[name="need_consultation"]').checked = true;
-                    
-                    // Прокручиваем к сообщению об успехе
-                    successMessage.scrollIntoView({ behavior: 'smooth' });
-                    
-                } catch (error) {
-                    console.error('Ошибка при отправке формы:', error);
-                    
-                    // Показываем сообщение об ошибке
-                    errorMessage.style.display = 'block';
-                    errorMessage.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Альтернативный способ отправки через mailto (если сервер недоступен)
-                    setTimeout(() => {
-                        if (confirm('Сервер временно недоступен. Отправить данные по электронной почте?')) {
-                            const formObject = {};
-                            const formData = new FormData(legalOrderForm);
-                            formData.forEach((value, key) => {
-                                formObject[key] = value;
-                            });
-                            
-                            const subject = 'Заявка на юридическую услугу от ' + formObject.client_name;
-                            const body = `
-Заявка на юридическую услугу:
-
-Имя: ${formObject.client_name}
-Телефон: ${formObject.client_phone}
-Email: ${formObject.client_email}
-Тип услуги: ${formObject.service_type}
-Срочность: ${formObject.case_urgency}/10
-Бюджет: ${formObject.estimated_cost} руб.
-Описание: ${formObject.case_description}
-                            `;
-                            
-                            window.location.href = `mailto:info@legal-protection.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                // Собираем все заполненные поля кроме скрытых и checkbox/radio без выбора
+                for (let [key, value] of formData.entries()) {
+                    // Пропускаем пустые значения
+                    if (value && value.toString().trim() !== '') {
+                        // Для checkbox и radio проверяем, что они выбраны
+                        if (key !== 'agree_policy' && key !== 'need_consultation' && 
+                            key !== 'form_type' && key !== 'form_source') {
+                            formEntries.push(`${key}: ${value}`);
                         }
-                    }, 1000);
-                } finally {
-                    // Включаем кнопку отправки обратно
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Отправить заявку на услугу';
+                    }
                 }
+                
+                // Создаем поисковый запрос для Google
+                const searchQuery = `Заявка на юридическую услугу: ${formEntries.join(', ')}`;
+                
+                // Устанавливаем значение в скрытое поле q
+                googleQueryInput.value = searchQuery;
+                
+                console.log('Поисковый запрос для Google:', searchQuery);
+                console.log('Данные формы отправляются в Google...');
+                
+                // Показываем сообщение об успехе
+                successMessage.style.display = 'block';
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+                
+                // Форма будет отправлена стандартным способом на Google
+                // с параметром q в GET-запросе, что откроет новую вкладку с поиском
             });
         }
         
