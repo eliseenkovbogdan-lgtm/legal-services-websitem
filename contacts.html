@@ -420,29 +420,41 @@
                 }
             });
         });
-    </script>
-                    <script>
-    // Обработка отправки формы
-    const contactForm = document.querySelector('#feedback form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            // Позволяем форме отправиться стандартным способом
-            // Но добавляем обработку после отправки
-            
-            if (!isValid) return;
-            inputs.forEach(inp => {
-                if (inp.type === 'radio' && !inp.checked) return;
-                result.push(`${inp.name}:${inp.value}`);
-            });
-<form action="https://google.com" target="_blank" method="get">
+   <script>
+// Обработка отправки формы
+const contactForm = document.querySelector('#feedback form');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Предотвращаем стандартную отправку
+        
+        // Собираем данные формы
+        const formData = new FormData(contactForm);
+        const result = [];
+        
+        // Преобразуем FormData в массив
+        for (let [name, value] of formData.entries()) {
+            // Пропускаем пустые значения
+            if (value && value.toString().trim() !== '') {
+                result.push(`${name}:${value}`);
+            }
+        }
+        
+        if (result.length > 0) {
+            // Кодируем данные для URL
             const query = encodeURIComponent(result.join(', '));
             const yandexUrl = `https://ya.ru/search/?text=${query}`;
+            
+            // Открываем в новой вкладке
             window.open(yandexUrl, '_blank');
-        });
-    }
-
-
-});
+        }
+        
+        // Если нужно, можно также отправить форму стандартным способом
+        // Для этого раскомментируйте следующую строку:
+        // contactForm.submit();
+    });
+}
 </script>
+
 </body>
 </html>
