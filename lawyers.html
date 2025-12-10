@@ -1,503 +1,280 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PILLOW SHOP</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наши юристы - Юридические услуги "Правовая защита"</title>
-    <link rel="stylesheet" href="styles.css">
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Юридическая компания "Правовая защита"</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./index.css">
     <style>
-        .lawyers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
         .lawyer-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e1e8ed;
+            transition: transform 0.3s ease;
         }
         
         .lawyer-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .lawyer-photo {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
             margin: 0 auto 1rem;
-            display: block;
-            border: 4px solid #3498db;
+            border: 3px solid #3498db;
         }
         
-        .lawyer-name {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
+        .specialization-badge {
+            background-color: #3498db;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
         }
         
-        .lawyer-specialization {
-            color: #e74c3c;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+        .experience-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
         }
         
-        .lawyer-experience {
-            background: #f8f9fa;
-            padding: 0.5rem;
-            border-radius: 5px;
-            text-align: center;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-        
-        .lawyer-skills {
-            list-style-type: none;
-            margin: 1rem 0;
-        }
-        
-        .lawyer-skills li {
-            padding: 0.3rem 0;
-            border-bottom: 1px dashed #ecf0f1;
-        }
-        
-        .lawyer-skills li:before {
+        .skill-item:before {
             content: "✓ ";
-            color: #27ae60;
+            color: #28a745;
             font-weight: bold;
-        }
-        
-        .specialization-filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-            justify-content: center;
-        }
-        
-        .filter-btn {
-            padding: 0.7rem 1.5rem;
-            border: 2px solid #3498db;
-            background: white;
-            color: #3498db;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background: #3498db;
-            color: white;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 3rem 0;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .consultation-form {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 3rem;
         }
     </style>
 </head>
+
 <body>
-    <nav id="main-nav">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="Логотип" width="50">
-                    <span>Правовая защита</span>
-                </a>
+
+    <div class="container">
+
+        <header class="card card-header" style="background-image: url(./images/background.jpg);">
+            <div class="card-body">
+                <h3 class="card-title text-center">Юридическая компания<br>"Правовая защита"</h5>
             </div>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li class="current"><a href="lawyers.html">Наши юристы</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-                <li><a href="https://sudrf.ru" target="_blank">Суды РФ</a></li>
-            </ul>
-        </div>
-    </nav>
+        </header>
 
-    <main>
-        <h1>Наши юристы</h1>
-        <p class="intro-text">В нашей компании работают высококвалифицированные специалисты с многолетним опытом в различных областях права. Каждый юрист обладает глубокими знаниями и успешной практикой в своей специализации.</p>
-
-        <!-- Фильтры по специализации -->
-        <div class="specialization-filters">
-            <button class="filter-btn active" onclick="filterLawyers('all')">Все специалисты</button>
-            <button class="filter-btn" onclick="filterLawyers('civil')">Гражданское право</button>
-            <button class="filter-btn" onclick="filterLawyers('criminal')">Уголовное право</button>
-            <button class="filter-btn" onclick="filterLawyers('corporate')">Корпоративное право</button>
-            <button class="filter-btn" onclick="filterLawyers('family')">Семейное право</button>
-            <button class="filter-btn" onclick="filterLawyers('property')">Налоговое право</button>
-            <button class="filter-btn" onclick="filterLawyers('property')">Test</button>
-        </div>
-
-        <div id="top">
-            <!-- Секция: Гражданские дела -->
-            <section id="civil-lawyers">
-                <h2>Специалисты по гражданским делам</h2>
-                <div class="lawyers-grid">
-                    <div class="lawyer-card" data-specialization="civil">
-                        <img src="images/lawyer1.jpg" alt="Петров Александр" class="lawyer-photo">
-                        <h3 class="lawyer-name">Петров Александр Сергеевич</h3>
-                        <div class="lawyer-specialization">Старший юрист по гражданским делам</div>
-                        <div class="lawyer-experience">Опыт работы: 12 лет</div>
-                        <p>Специализируется на жилищных спорах, защите прав потребителей и наследственных делах.</p>
-                        <ul class="lawyer-skills">
-                            <li>Более 200 выигранных дел</li>
-                            <li>Эксперт в жилищном праве</li>
-                            <li>Опыт ведения сложных наследственных споров</li>
-                            <li>Консультации по правам потребителей</li>
-                        </ul>
-                        <div class="lawyer-contact">
-                            <strong>Образование:</strong> МГУ им. Ломоносова, юридический факультет<br>
-                            <strong>Языки:</strong> Русский, Английский
-                        </div>
-                    </div>
-
-                    <div class="lawyer-card" data-specialization="civil">
-                        <img src="images/lawyer2.jpg" alt="Смирнова Ольга" class="lawyer-photo">
-                        <h3 class="lawyer-name">Смирнова Ольга Владимировна</h3>
-                        <div class="lawyer-specialization">Юрист по трудовым спорам</div>
-                        <div class="lawyer-experience">Опыт работы: 8 лет</div>
-                        <p>Эксперт в области трудового права, защита прав работников и работодателей.</p>
-                        <ul class="lawyer-skills">
-                            <li>Специализация - трудовые споры</li>
-                            <li>Восстановление на работе</li>
-                            <li>Взыскание заработной платы</li>
-                            <li>Консультации по трудовому договору</li>
-                        </ul>
-                        <div class="lawyer-contact">
-                            <strong>Образование:</strong> СПбГУ, юридический факультет<br>
-                            <strong>Языки:</strong> Русский, Немецкий
-                        </div>
-                    </div>
-                </div>
-            </section>
-   <div id="top">
-            <!-- Секция: Гражданские дела -->
-            <!-- Секция: Уголовные дела -->
-            <section id="criminal-lawyers">
-                <h2>Адвокаты по уголовным делам</h2>
-                <div class="lawyers-grid">
-                    <div class="lawyer-card" data-specialization="criminal">
-                        <img src="images/lawyer3.jpg" alt="Козлов Дмитрий" class="lawyer-photo">
-                        <h3 class="lawyer-name">Козлов Дмитрий Иванович</h3>
-                        <div class="lawyer-specialization">Адвокат по уголовным делам</div>
-                        <div class="lawyer-experience">Опыт работы: 15 лет</div>
-                        <p>Специализируется на защите по экономическим преступлениям и делам о коррупции.</p>
-                        <ul class="lawyer-skills">
-                            <li>Защита в суде присяжных</li>
-                            <li>Экономические преступления</li>
-                            <li>Обжалование приговоров</li>
-                            <li>Досудебное соглашение</li>
-                        </ul>
-                        <div class="lawyer-contact">
-                            <strong>Образование:</strong> МГЮА им. Кутафина<br>
-                            <strong>Статус:</strong> Член адвокатской палаты
-                        </div>
-                    </div>
-
-                    <div class="lawyer-card" data-specialization="criminal">
-                        <img src="images/lawyer4.jpg" alt="Новикова Екатерина" class="lawyer-photo">
-                        <h3 class="lawyer-name">Новикова Екатерина Петровна</h3>
-                        <div class="lawyer-specialization">Адвокат по уголовным делам</div>
-                        <div class="lawyer-experience">Опыт работы: 10 лет</div>
-                        <p>Эксперт в области защиты по делам о наркотиках и преступлениях против личности.</p>
-                        <ul class="lawyer-skills">
-                            <li>Защита по ст. 228 УК РФ</li>
-                            <li>Преступления против жизни</li>
-                            <li>УДО и помилование</li>
-                            <li>Защита свидетелей</li>
-                        </ul>
-                        <div class="lawyer-contact">
-                            <strong>Образование:</strong> УрГЮУ<br>
-                            <strong>Статус:</strong> Член коллегии адвокатов
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Секция: Корпоративное право -->
-            <section id="corporate-lawyers">
-                <h2>Специалисты по корпоративному праву</h2>
-                <div class="lawyers-grid">
-                    <div class="lawyer-card" data-specialization="corporate">
-                        <img src="images/lawyer5.jpg" alt="Волков Андрей" class="lawyer-photo">
-                        <h3 class="lawyer-name">Волков Андрей Николаевич</h3>
-                        <div class="lawyer-specialization">Корпоративный юрист</div>
-                        <div class="lawyer-experience">Опыт работы: 14 лет</div>
-                        <p>Специализируется на M&A сделках, Due Diligence и корпоративных спорах.</p>
-                        <ul class="lawyer-skills">
-                            <li>Слияния и поглощения</li>
-                            <li>Due Diligence</li>
-                            <li>Корпоративные споры</li>
-                            <li>Международное право</li>
-                        </ul>
-                        <div class="lawyer-contact">
-                            <strong>Образование:</strong> НИУ ВШЭ<br>
-                            <strong>Языки:</strong> Русский, Английский, Французский
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Секция: Семейные споры -->
-            <section id="family-lawyers">
-                <h2>Специалисты по семейным спорам</h2>
-                <div class="lawyers-grid">
-                    <div class="lawyer-card" data-specialization="family">
-                        <img src="images/lawyer6.jpg" alt="Орлова Марина" class="lawyer-photo">
-                        <h3 class="lawyer-name">Орлова Марина Викторовна</h3>
-                        <div class="lawyer-specialization">Семейный юрист</div>
-                        <div class="lawyer-experience">Опыт работы: 9 лет</div>
-                        <p>Эксперт в области семейного права, брачных договоров и споров о детях.</p>
-                        <ul class="lawyer-skills">
-                            <li>Раздел имущества</li>
-                            <li>Споры о детях</li>
-                            <li>Брачные договоры</li>
-                            <li>Алиментные обязательства</li>
-                        </ul>
-                        <div class="lawyer-contact">
-                            <strong>Образование:</strong> РУДН<br>
-                            <strong>Специализация:</strong> Семейное право
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Секция: Налоговое право -->
-            <section id="property-lawyers">
-                <h2>Специалисты по налоговым спорам</h2>
-                <div class="lawyers-grid">
-                    <div class="lawyer-card" data-specialization="property">
-                        <img src="images/lawyer7.jpg" alt="Федоров Сергей" class="lawyer-photo">
-                        <h3 class="lawyer-name">Федоров Сергей Михайлович</h3>
-                        <div class="lawyer-specialization">Юрист по недвижимости</div>
-                        <div class="lawyer-experience">Опыт работы: 11 лет</div>
-                        <p>Специализируется на налоговых выплатах, земельных спорах и долевом строительстве.</p>
-                        <ul class="lawyer-skills">
-                            <li>Выплаты налогов</li>
-                            <li>Земельные споры</li>
-                        </ul>
-                        <div class="lawyer-contact">
-                            <strong>Образование:</strong> МГУ им. Ломоносова<br>
-                            <strong>Квалификация:</strong> Риэлторская деятельность
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Статистика компании -->
-        <section class="company-stats">
-            <h2>Наша статистика</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">500+</div>
-                    <div>Выигранных дел</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">15</div>
-                    <div>Лет на рынке</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">98%</div>
-                    <div>Успешных кейсов</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1000+</div>
-                    <div>Довольных клиентов</div>
-                </div>
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link " href="./index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./lawyers.html">Наши юристы</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="./form.html">Запись на консультацию</a></li>
+                </ul>
             </div>
-        </section>
+            <!--начало уникального содержания страницы-->
+            <div class="card-body">
+                <h5 class='card-title text-center'>Наши юристы</h5>
+                <p class="text-center">Выберите специалиста для консультации</p>
+                
+                <form action="https://httpbin.org/post" method="POST" id="UserEnter" name="UserEnter">
+                    <input type="hidden" name="form_type" value="lawyer_selection">
+                    
+                    <div class="row g-4" id="node_for_insert">
+                        <!-- Карточка юриста 1 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card lawyer-card h-100">
+                                <div class="card-body text-center">
+                                    <img src="images/lawyer1.jpg" alt="Петров Александр" class="lawyer-photo">
+                                    <h5 class="card-title">Петров Александр Сергеевич</h5>
+                                    <p class="card-text">Старший юрист по гражданским делам</p>
+                                    
+                                    <div class="mb-3">
+                                        <span class="specialization-badge">Гражданское право</span>
+                                        <span class="experience-badge">12 лет опыта</span>
+                                    </div>
+                                    
+                                    <p class="card-text small">Специализируется на жилищных спорах, защите прав потребителей и наследственных делах.</p>
+                                    
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="radio" name="selected_lawyer" 
+                                               id="lawyer1" value="petrov" required>
+                                        <label class="form-check-label" for="lawyer1">
+                                            Выбрать этого юриста
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="hours1" class="form-label">Количество часов консультации:</label>
+                                        <select class="form-select" id="hours1" name="hours_petrov">
+                                            <option value="1">1 час - 3,000 руб.</option>
+                                            <option value="2">2 часа - 5,500 руб.</option>
+                                            <option value="3">3 часа - 8,000 руб.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- Форма выбора юриста -->
-        <section class="consultation-form">
-            <h2>Выбрать юриста для консультации</h2>
-            <form action="https://httpbin.org/post" method="POST">
-                <input type="hidden" name="form_type" value="lawyer_selection">
-                
-                <div class="form-group">
-                    <label for="client-name">Ваше имя:</label>
-                    <input type="text" id="client-name" name="client_name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="client-phone">Телефон:</label>
-                    <input type="tel" id="client-phone" name="client_phone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="specialization-needed">Требуемая специализация:</label>
-                    <select id="specialization-needed" name="specialization" required>
-                        <option value="">Выберите специализацию</option>
-                        <option value="civil">Гражданское право</option>
-                        <option value="criminal">Уголовное право</option>
-                        <option value="corporate">Корпоративное право</option>
-                        <option value="family">Семейное право</option>
-                        <option value="property">Налговое право</option>
-                        <option value="other">Другое</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="preferred-lawyer">Предпочтительный юрист (необязательно):</label>
-                    <select id="preferred-lawyer" name="preferred_lawyer">
-                        <option value="">Любой доступный специалист</option>
-                        <option value="petrov">Петров А.С. (Гражданские дела)</option>
-                        <option value="smirnova">Смирнова О.В. (Трудовые споры)</option>
-                        <option value="kozlov">Козлов Д.И. (Уголовные дела)</option>
-                        <option value="novikova">Новикова Е.П. (Уголовные дела)</option>
-                        <option value="volkov">Волков А.Н. (Корпоративное право)</option>
-                        <option value="orlova">Орлова М.В. (Семейные споры)</option>
-                        <option value="fedorov">Федоров С.М. (Недвижимость и налоговое право)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="case-description">Краткое описание ситуации:</label>
-                    <textarea id="case-description" name="case_description" rows="4" placeholder="Опишите вашу проблему..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="urgency">Срочность консультации:</label>
-                    <div>
-                        <input type="radio" id="urgency-low" name="urgency" value="low" checked>
-                        <label for="urgency-low">В течение недели</label>
-                        
-                        <input type="radio" id="urgency-medium" name="urgency" value="medium">
-                        <label for="urgency-medium">В течение 2-3 дней</label>
-                        
-                        <input type="radio" id="urgency-high" name="urgency" value="high">
-                        <label for="urgency-high">Срочно (сегодня-завтра)</label>
+                        <!-- Карточка юриста 2 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card lawyer-card h-100">
+                                <div class="card-body text-center">
+                                    <img src="images/lawyer2.jpg" alt="Смирнова Ольга" class="lawyer-photo">
+                                    <h5 class="card-title">Смирнова Ольга Владимировна</h5>
+                                    <p class="card-text">Юрист по трудовым спорам</p>
+                                    
+                                    <div class="mb-3">
+                                        <span class="specialization-badge">Трудовое право</span>
+                                        <span class="experience-badge">8 лет опыта</span>
+                                    </div>
+                                    
+                                    <p class="card-text small">Эксперт в области трудового права, защита прав работников и работодателей.</p>
+                                    
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="radio" name="selected_lawyer" 
+                                               id="lawyer2" value="smirnova">
+                                        <label class="form-check-label" for="lawyer2">
+                                            Выбрать этого юриста
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="hours2" class="form-label">Количество часов консультации:</label>
+                                        <select class="form-select" id="hours2" name="hours_smirnova">
+                                            <option value="1">1 час - 2,500 руб.</option>
+                                            <option value="2">2 часа - 4,500 руб.</option>
+                                            <option value="3">3 часа - 6,500 руб.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Карточка юриста 3 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card lawyer-card h-100">
+                                <div class="card-body text-center">
+                                    <img src="images/lawyer3.jpg" alt="Козлов Дмитрий" class="lawyer-photo">
+                                    <h5 class="card-title">Козлов Дмитрий Иванович</h5>
+                                    <p class="card-text">Адвокат по уголовным делам</p>
+                                    
+                                    <div class="mb-3">
+                                        <span class="specialization-badge">Уголовное право</span>
+                                        <span class="experience-badge">15 лет опыта</span>
+                                    </div>
+                                    
+                                    <p class="card-text small">Специализируется на защите по экономическим преступлениям и делам о коррупции.</p>
+                                    
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="radio" name="selected_lawyer" 
+                                               id="lawyer3" value="kozlov">
+                                        <label class="form-check-label" for="lawyer3">
+                                            Выбрать этого юриста
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="hours3" class="form-label">Количество часов консультации:</label>
+                                        <select class="form-select" id="hours3" name="hours_kozlov">
+                                            <option value="1">1 час - 4,000 руб.</option>
+                                            <option value="2">2 часа - 7,500 руб.</option>
+                                            <option value="3">3 часа - 11,000 руб.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Карточка юриста 4 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card lawyer-card h-100">
+                                <div class="card-body text-center">
+                                    <img src="images/lawyer4.jpg" alt="Новикова Екатерина" class="lawyer-photo">
+                                    <h5 class="card-title">Новикова Екатерина Петровна</h5>
+                                    <p class="card-text">Адвокат по уголовным делам</p>
+                                    
+                                    <div class="mb-3">
+                                        <span class="specialization-badge">Уголовное право</span>
+                                        <span class="experience-badge">10 лет опыта</span>
+                                    </div>
+                                    
+                                    <p class="card-text small">Эксперт в области защиты по делам о наркотиках и преступлениях против личности.</p>
+                                    
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="radio" name="selected_lawyer" 
+                                               id="lawyer4" value="novikova">
+                                        <label class="form-check-label" for="lawyer4">
+                                            Выбрать этого юриста
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="hours4" class="form-label">Количество часов консультации:</label>
+                                        <select class="form-select" id="hours4" name="hours_novikova">
+                                            <option value="1">1 час - 3,500 руб.</option>
+                                            <option value="2">2 часа - 6,500 руб.</option>
+                                            <option value="3">3 часа - 9,500 руб.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Карточка юриста 5 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card lawyer-card h-100">
+                                <div class="card-body text-center">
+                                    <img src="images/lawyer5.jpg" alt="Волков Андрей" class="lawyer-photo">
+                                    <h5 class="card-title">Волков Андрей Николаевич</h5>
+                                    <p class="card-text">Корпоративный юрист</p>
+                                    
+                                    <div class="mb-3">
+                                        <span class="specialization-badge">Корпоративное право</span>
+                                        <span class="experience-badge">14 лет опыта</span>
+                                    </div>
+                                    
+                                    <p class="card-text small">Специализируется на M&A сделках, Due Diligence и корпоративных спорах.</p>
+                                    
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="radio" name="selected_lawyer" 
+                                               id="lawyer5" value="volkov">
+                                        <label class="form-check-label" for="lawyer5">
+                                            Выбрать этого юриста
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="hours5" class="form-label">Количество часов консультации:</label>
+                                        <select class="form-select" id="hours5" name="hours_volkov">
+                                            <option value="1">1 час - 5,000 руб.</option>
+                                            <option value="2">2 часа - 9,000 руб.</option>
+                                            <option value="3">3 часа - 13,000 руб.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="agree_terms" required>
-                        Я согласен на обработку персональных данных
-                    </label>
-                </div>
-                
-                <button type="submit" class="btn">Записаться на консультацию</button>
-            </form>
+                    
+                    <div class="mt-4">
+                        <input class="btn btn-primary" type="Submit" value="Записаться на консультацию">
+                    </div>
+                </form>
+            </div>
+            <!--окончание уникального содержания страницы-->
         </div>
-     <a href="#top" class="btn btn-outline-secondary ms-2 mb-4"
-      >К началу страницы</a
-    >
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html
 
-    <footer>
-        <p>&copy; 2025 Юридическая компания "Правовая защита". Все права защищены.</p>
-    </footer>
+        <footer class="card card-footer">
+            <div class="card-body">
+                <p>&copy; 2025 Юридическая компания "Правовая защита". Все права защищены.</p>
+            </div>
+        </footer>
 
-    <script>
-        // Фильтрация юристов по специализации
-        function filterLawyers(specialization) {
-            const lawyers = document.querySelectorAll('.lawyer-card');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            
-            // Обновляем активную кнопку
-            filterBtns.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.textContent.toLowerCase().includes(specialization) || 
-                    (specialization === 'all' && btn.textContent.includes('Все'))) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Показываем/скрываем карточки
-            lawyers.forEach(lawyer => {
-                if (specialization === 'all' || lawyer.dataset.specialization === specialization) {
-                    lawyer.style.display = 'block';
-                } else {
-                    lawyer.style.display = 'none';
-                }
-            });
-            
-            // Прокручиваем к соответствующему разделу
-            if (specialization !== 'all') {
-                const sectionId = specialization + '-lawyers';
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        }
-        
-        // Плавная прокрутка для внутренних ссылок
-        document.querySelectorAll('.internal-nav a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        // Автоматическое обновление даты в форме
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            const dateInputs = document.querySelectorAll('input[type="date"]');
-            dateInputs.forEach(input => {
-                if (!input.value) {
-                    input.value = today;
-                }
-            });
-        });
-    </script>
+    </div>
+
 </body>
+<script crossorigin="anonymous" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/0650_api.js"></script>
+
 </html>
