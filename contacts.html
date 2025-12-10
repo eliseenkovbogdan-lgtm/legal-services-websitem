@@ -155,24 +155,6 @@
         .btn:hover {
             background: #2980b9;
         }
-        
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
-            display: none;
-        }
-        
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -350,19 +332,9 @@
             <section id="feedback" class="contact-form-container">
                 <h2>Форма заказа юридических услуг</h2>
                 
-                <!-- Сообщения об успехе/ошибке -->
-                <div id="successMessage" class="success-message">
-                    Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.
-                </div>
-                
-                <div id="errorMessage" class="error-message">
-                    Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.
-                </div>
-                
-                <!-- Форма для отправки на Google -->
+                <!-- Простая форма с отправкой на Google -->
                 <form id="legalOrderForm" action="https://www.google.com/search" target="_blank" method="GET">
                     <input type="hidden" name="form_type" value="legal_service_order">
-                    <input type="hidden" name="form_source" value="legal_protection_website">
                     
                     <div class="form-group">
                         <label for="client_name">Имя клиента:</label>
@@ -375,17 +347,12 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="client_email">Электронная почта:</label>
-                        <input type="email" id="client_email" name="client_email" placeholder="example@email.com" required>
-                    </div>
-                    
-                    <div class="form-group">
                         <label for="case_description">Описание ситуации:</label>
                         <textarea id="case_description" name="case_description" rows="4" placeholder="Опишите вашу ситуацию подробно..." required></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label for="service_type">Тип юридической услуги:</label>
+                        <label>Тип юридической услуги:</label>
                         <div>
                             <input type="radio" id="service_civil" name="service_type" value="civil" required>
                             <label for="service_civil">Гражданские дела</label><br>
@@ -405,7 +372,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="case_urgency">Срочность обработки (от 1 до 10, где 10 - максимальная):</label>
+                        <label for="case_urgency">Срочность обработки (от 1 до 10):</label>
                         <input type="number" id="case_urgency" name="case_urgency" min="1" max="10" value="5" required>
                     </div>
                     
@@ -416,37 +383,37 @@
                     
                     <div class="form-group">
                         <label for="preferred_lawyer">Предпочтительный юрист:</label>
-                        <input type="text" id="preferred_lawyer" name="preferred_lawyer" placeholder="Не обязательно, если нет предпочтений">
+                        <input type="text" id="preferred_lawyer" name="preferred_lawyer" placeholder="Не обязательно">
                     </div>
                     
                     <div class="form-group">
-                        <label for="court_instance">Судебная инстанция (если известно):</label>
+                        <label for="court_instance">Судебная инстанция:</label>
                         <input type="text" id="court_instance" name="court_instance" placeholder="Например: Арбитражный суд г. Москвы">
                     </div>
                     
                     <div class="form-group">
-                        <label for="document_count">Количество имеющихся документов:</label>
+                        <label for="document_count">Количество документов:</label>
                         <input type="number" id="document_count" name="document_count" min="0" value="0">
                     </div>
                     
                     <div class="form-group">
                         <label>
                             <input type="checkbox" name="need_consultation" value="yes" checked>
-                            Требуется первичная консультация
+                            Требуется консультация
                         </label>
                     </div>
                     
                     <div class="form-group">
                         <label>
                             <input type="checkbox" name="agree_policy" required>
-                            Я согласен на обработку персональных данных и ознакомлен с политикой конфиденциальности
+                            Согласен на обработку данных
                         </label>
                     </div>
                     
-                    <!-- Скрытое поле q для Google поиска -->
-                    <input type="hidden" id="google_query" name="q" value="">
+                    <!-- Скрытое поле q для поискового запроса в Google -->
+                    <input type="hidden" name="q" id="google_query" value="">
                     
-                    <button type="submit" class="btn" id="submitBtn">Отправить заявку на услугу</button>
+                    <button type="submit" class="btn">Отправить заявку на Google</button>
                 </form>
             </section>
         </div>
@@ -492,97 +459,54 @@
             });
         });
 
-        // Обработка формы заказа юридических услуг
+        // Обработка формы для Google
         const legalOrderForm = document.getElementById('legalOrderForm');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const submitBtn = document.getElementById('submitBtn');
-        const googleQueryInput = document.getElementById('google_query');
         
         if (legalOrderForm) {
             legalOrderForm.addEventListener('submit', function(e) {
-                // Скрываем предыдущие сообщения
-                successMessage.style.display = 'none';
-                errorMessage.style.display = 'none';
-                
-                // Дополнительная валидация перед отправкой
-                const phoneInput = document.getElementById('client_phone');
-                const phoneRegex = /^[\+]?[7-8]?[\s]?[\(]?[0-9]{3}[\)]?[\s]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/;
-                
-                if (!phoneRegex.test(phoneInput.value.replace(/\s/g, ''))) {
-                    alert('Пожалуйста, введите корректный номер телефона');
-                    phoneInput.focus();
-                    e.preventDefault();
-                    return;
-                }
-                
-                // Проверка числа документов
-                const docCount = document.getElementById('document_count');
-                if (docCount.value < 0) {
-                    alert('Количество документов не может быть отрицательным');
-                    docCount.focus();
-                    e.preventDefault();
-                    return;
-                }
-                
-                // Проверка бюджета
-                const budget = document.getElementById('estimated_cost');
-                if (budget.value < 0) {
-                    alert('Бюджет не может быть отрицательным');
-                    budget.focus();
-                    e.preventDefault();
-                    return;
-                }
-                
-                // Собираем данные формы для поискового запроса
+                // Собираем данные из формы
                 const formData = new FormData(legalOrderForm);
-                const formEntries = [];
+                let searchQuery = "Заявка на юридическую услугу: ";
                 
-                // Собираем все заполненные поля кроме скрытых и checkbox/radio без выбора
+                // Добавляем все заполненные поля в поисковый запрос
                 for (let [key, value] of formData.entries()) {
-                    // Пропускаем пустые значения
-                    if (value && value.toString().trim() !== '') {
-                        // Для checkbox и radio проверяем, что они выбраны
-                        if (key !== 'agree_policy' && key !== 'need_consultation' && 
-                            key !== 'form_type' && key !== 'form_source') {
-                            formEntries.push(`${key}: ${value}`);
-                        }
+                    if (key !== 'q' && value && value.toString().trim() !== '') {
+                        // Для удобочитаемости добавляем названия полей
+                        const fieldNames = {
+                            'client_name': 'Имя',
+                            'client_phone': 'Телефон',
+                            'case_description': 'Описание',
+                            'service_type': 'Тип услуги',
+                            'case_urgency': 'Срочность',
+                            'estimated_cost': 'Бюджет',
+                            'preferred_lawyer': 'Юрист',
+                            'court_instance': 'Суд',
+                            'document_count': 'Документы',
+                            'need_consultation': 'Консультация',
+                            'agree_policy': 'Согласие'
+                        };
+                        
+                        const fieldName = fieldNames[key] || key;
+                        searchQuery += `${fieldName}: ${value}, `;
                     }
                 }
                 
-                // Создаем поисковый запрос для Google
-                const searchQuery = `Заявка на юридическую услугу: ${formEntries.join(', ')}`;
+                // Убираем последнюю запятую и пробел
+                searchQuery = searchQuery.slice(0, -2);
                 
                 // Устанавливаем значение в скрытое поле q
-                googleQueryInput.value = searchQuery;
+                document.getElementById('google_query').value = searchQuery;
                 
-                console.log('Поисковый запрос для Google:', searchQuery);
-                console.log('Данные формы отправляются в Google...');
-                
-                // Показываем сообщение об успехе
-                successMessage.style.display = 'block';
-                successMessage.scrollIntoView({ behavior: 'smooth' });
-                
-                // Форма будет отправлена стандартным способом на Google
-                // с параметром q в GET-запросе, что откроет новую вкладку с поиском
+                // Форма отправится стандартным способом на Google с параметром q
+                // что откроет новую вкладку с поиском по нашему запросу
+                console.log('Отправка на Google с запросом:', searchQuery);
             });
         }
         
-        // Инициализация значений по умолчанию
+        // Устанавливаем значения по умолчанию при загрузке
         document.addEventListener('DOMContentLoaded', function() {
-            // Устанавливаем значения по умолчанию
-            if (document.getElementById('case_urgency')) {
-                document.getElementById('case_urgency').value = 5;
-            }
-            if (document.getElementById('estimated_cost')) {
-                document.getElementById('estimated_cost').value = 10000;
-            }
-            if (document.getElementById('document_count')) {
-                document.getElementById('document_count').value = 0;
-            }
-            
-            // Выбираем первый radio button по умолчанию
-            const firstRadio = document.querySelector('input[type="radio"][name="service_type"]');
+            // Выбираем первую radio кнопку по умолчанию
+            const firstRadio = document.querySelector('input[name="service_type"]');
             if (firstRadio) {
                 firstRadio.checked = true;
             }
