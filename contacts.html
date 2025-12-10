@@ -113,6 +113,48 @@
             border-radius: 10px;
             margin-top: 3rem;
         }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
     </style>
 </head>
 <body>
@@ -288,88 +330,90 @@
 
             <!-- Форма обратной связи -->
             <section id="feedback" class="contact-form-container">
-                <h2>Форма обратной связи</h2>
-                <form action="https://httpbin.org/post" method="POST">
-                    <input type="hidden" name="form_type" value="contact_feedback">
+                <h2>Форма заказа юридических услуг</h2>
+                <form id="legalOrderForm" action="https://httpbin.org/post" method="POST" target="_blank">
+                    <input type="hidden" name="form_type" value="legal_service_order">
                     
                     <div class="form-group">
-                        <label for="feedback-name">Ваше имя:</label>
-                        <input type="text" id="feedback-name" name="name" required>
+                        <label for="client_name">Имя клиента:</label>
+                        <input type="text" id="client_name" name="client_name" placeholder="Введите ваше полное имя" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="feedback-phone">Телефон:</label>
-                        <input type="tel" id="feedback-phone" name="phone" required>
+                        <label for="client_phone">Контактный телефон:</label>
+                        <input type="tel" id="client_phone" name="client_phone" placeholder="+7 (999) 999-99-99" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="feedback-email">Email:</label>
-                        <input type="email" id="feedback-email" name="email" required>
+                        <label for="case_description">Описание ситуации:</label>
+                        <textarea id="case_description" name="case_description" rows="4" placeholder="Опишите вашу ситуацию подробно..." required></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label for="feedback-department">Отдел для связи:</label>
-                        <select id="feedback-department" name="department" required>
-                            <option value="">Выберите отдел</option>
-                            <option value="civil">Гражданские дела</option>
-                            <option value="criminal">Уголовные дела</option>
-                            <option value="corporate">Корпоративное право</option>
-                            <option value="family">Семейные споры</option>
-                            <option value="property">Налоговые споры</option>
-                            <option value="labor">Трудовые споры</option>
-                            <option value="other">Другое</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="feedback-type">Тип обращения:</label>
+                        <label for="service_type">Тип юридической услуги:</label>
                         <div>
-                            <input type="radio" id="type-consult" name="request_type" value="consultation" checked>
-                            <label for="type-consult">Консультация</label>
+                            <input type="radio" id="service_civil" name="service_type" value="civil" required>
+                            <label for="service_civil">Гражданские дела</label><br>
                             
-                            <input type="radio" id="type-docs" name="request_type" value="documents">
-                            <label for="type-docs">Оформление документов</label>
+                            <input type="radio" id="service_criminal" name="service_type" value="criminal">
+                            <label for="service_criminal">Уголовные дела</label><br>
                             
-                            <input type="radio" id="type-other" name="request_type" value="other">
-                            <label for="type-other">Другое</label>
+                            <input type="radio" id="service_family" name="service_type" value="family">
+                            <label for="service_family">Семейные споры</label><br>
+                            
+                            <input type="radio" id="service_corporate" name="service_type" value="corporate">
+                            <label for="service_corporate">Корпоративное право</label><br>
+                            
+                            <input type="radio" id="service_labor" name="service_type" value="labor">
+                            <label for="service_labor">Трудовые споры</label>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="feedback-urgency">Срочность:</label>
-                        <select id="feedback-urgency" name="urgency">
-                            <option value="normal">Обычная</option>
-                            <option value="high">Срочная</option>
-                            <option value="emergency">Экстренная</option>
-                        </select>
+                        <label for="case_urgency">Срочность обработки (от 1 до 10, где 10 - максимальная):</label>
+                        <input type="number" id="case_urgency" name="case_urgency" min="1" max="10" placeholder="5" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="feedback-message">Сообщение:</label>
-                        <textarea id="feedback-message" name="message" rows="5" placeholder="Опишите ваш вопрос или ситуацию..." required></textarea>
+                        <label for="estimated_cost">Предполагаемый бюджет (руб.):</label>
+                        <input type="number" id="estimated_cost" name="estimated_cost" min="0" step="1000" placeholder="10000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferred_lawyer">Предпочтительный юрист:</label>
+                        <input type="text" id="preferred_lawyer" name="preferred_lawyer" placeholder="Не обязательно, если нет предпочтений">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="court_instance">Судебная инстанция (если известно):</label>
+                        <input type="text" id="court_instance" name="court_instance" placeholder="Например: Арбитражный суд г. Москвы">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="document_count">Количество имеющихся документов:</label>
+                        <input type="number" id="document_count" name="document_count" min="0" value="0">
                     </div>
                     
                     <div class="form-group">
                         <label>
-                            <input type="checkbox" name="newsletter" checked>
-                            Подписаться на новостную рассылку
+                            <input type="checkbox" name="need_consultation" value="yes" checked>
+                            Требуется первичная консультация
                         </label>
                     </div>
                     
                     <div class="form-group">
                         <label>
-                            <input type="checkbox" name="agree_terms" required>
-                            Я согласен на обработку персональных данных
+                            <input type="checkbox" name="agree_policy" required>
+                            Я согласен на обработку персональных данных и ознакомлен с политикой конфиденциальности
                         </label>
                     </div>
                     
-                    <button type="submit" class="btn">Отправить сообщение</button>
+                    <button type="submit" class="btn">Отправить заявку на услугу</button>
                 </form>
             </section>
-                    
+        </div>
+    </main>
 
-
-                    
     <footer>
         <p>&copy; 2025 Юридическая компания "Правовая защита". Все права защищены.</p>
         <p>Телефон: +9 (999) 999-99-99 | Email: info@legal-protection.ru</p>
@@ -384,17 +428,6 @@
                 const targetSection = document.getElementById(targetId);
                 if (targetSection) {
                     targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Автозаполнение даты в форме
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            const dateInputs = document.querySelectorAll('input[type="date"]');
-            dateInputs.forEach(input => {
-                if (!input.value) {
-                    input.value = today;
                 }
             });
         });
@@ -420,41 +453,49 @@
                 }
             });
         });
-   <script>
-// Обработка отправки формы
-const contactForm = document.querySelector('#feedback form');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Предотвращаем стандартную отправку
+        // Обработка формы заказа юридических услуг
+        const legalOrderForm = document.getElementById('legalOrderForm');
         
-        // Собираем данные формы
-        const formData = new FormData(contactForm);
-        const result = [];
-        
-        // Преобразуем FormData в массив
-        for (let [name, value] of formData.entries()) {
-            // Пропускаем пустые значения
-            if (value && value.toString().trim() !== '') {
-                result.push(`${name}:${value}`);
-            }
+        if (legalOrderForm) {
+            legalOrderForm.addEventListener('submit', function(e) {
+                // Дополнительная валидация перед отправкой
+                const phoneInput = document.getElementById('client_phone');
+                const phoneRegex = /^[\+]?[7-8]?[\s]?[\(]?[0-9]{3}[\)]?[\s]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/;
+                
+                if (!phoneRegex.test(phoneInput.value.replace(/\s/g, ''))) {
+                    alert('Пожалуйста, введите корректный номер телефона');
+                    phoneInput.focus();
+                    e.preventDefault();
+                    return;
+                }
+                
+                // Проверка числа документов
+                const docCount = document.getElementById('document_count');
+                if (docCount.value < 0) {
+                    alert('Количество документов не может быть отрицательным');
+                    docCount.focus();
+                    e.preventDefault();
+                    return;
+                }
+                
+                // Проверка бюджета
+                const budget = document.getElementById('estimated_cost');
+                if (budget.value < 0) {
+                    alert('Бюджет не может быть отрицательным');
+                    budget.focus();
+                    e.preventDefault();
+                    return;
+                }
+                
+                // Если все проверки пройдены, форма отправляется на сервер
+                console.log('Форма отправляется на сервер...');
+                console.log('Данные формы:', new FormData(legalOrderForm));
+                
+                // Форма будет отправлена стандартным способом на указанный в action URL
+                // https://httpbin.org/post - тестовый сервер для демонстрации
+            });
         }
-        
-        if (result.length > 0) {
-            // Кодируем данные для URL
-            const query = encodeURIComponent(result.join(', '));
-            const yandexUrl = `https://ya.ru/search/?text=${query}`;
-            
-            // Открываем в новой вкладке
-            window.open(yandexUrl, '_blank');
-        }
-        
-        // Если нужно, можно также отправить форму стандартным способом
-        // Для этого раскомментируйте следующую строку:
-        // contactForm.submit();
-    });
-}
-</script>
-
+    </script>
 </body>
 </html>
